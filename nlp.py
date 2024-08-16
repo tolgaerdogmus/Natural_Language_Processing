@@ -16,7 +16,7 @@
 # !pip install textblob
 # !pip install wordcloud
 
-
+import  re
 from warnings import filterwarnings
 import matplotlib.pyplot as plt
 import numpy as np
@@ -53,7 +53,7 @@ df['reviewText'] = df['reviewText'].str.lower()
 # Punctuations
 ###############################
 
-df['reviewText'] = df['reviewText'].str.replace('[^\w\s]', '')
+df['reviewText'] = df['reviewText'].str.replace(r'[^\w\s]', '', regex=True)
 
 # regular expression
 
@@ -61,13 +61,13 @@ df['reviewText'] = df['reviewText'].str.replace('[^\w\s]', '')
 # Numbers
 ###############################
 
-df['reviewText'] = df['reviewText'].str.replace('\d', '')
+df['reviewText'] = df['reviewText'].str.replace('\d', '', regex=True)
 
 ###############################
 # Stopwords
 ###############################
 import nltk
-# nltk.download('stopwords')
+nltk.download('stopwords')
 
 sw = stopwords.words('english')
 
